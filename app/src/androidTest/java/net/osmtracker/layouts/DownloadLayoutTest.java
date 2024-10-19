@@ -14,7 +14,7 @@ import net.osmtracker.util.TestUtils;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 

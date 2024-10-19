@@ -1,9 +1,9 @@
 package net.osmtracker.util;
 
-import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
 
 public class ArrayUtilsTest {
 
@@ -21,7 +21,7 @@ public class ArrayUtilsTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void findMax() {
 
         double max = ArrayUtils.findMax(data, 0);

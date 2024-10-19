@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -38,7 +38,7 @@ public class URLCreatorTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void createMetadataDirUrl() {
         setupMocks();
         String result = URLCreator.createMetadataDirUrl(mockContext);
@@ -63,7 +63,7 @@ public class URLCreatorTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void createIconsDirUrl() {
         setupMocks();
         String result = URLCreator.createIconsDirUrl(mockContext, "hidrantes");

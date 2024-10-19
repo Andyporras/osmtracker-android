@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import net.osmtracker.R;
 
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -41,7 +41,7 @@ public class ExportTrackTest {
     Context mockContext = Mockito.mock(Context.class);
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testBuildGPXFilenameUsingOnlyTrackName() {
         // Method parameters
         String trackNameInDatabase = "MyTrack";
@@ -54,7 +54,7 @@ public class ExportTrackTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testBuildGPXFilenameUsingTrackNameAndStartDate() {
         // Method parameters
         String trackNameInDatabase = "MyTrack";
@@ -78,7 +78,7 @@ public class ExportTrackTest {
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testBuildGPXFilenameWhenSanitizesTrackName() {
         // Method parameters
         String trackNameInDatabase = ":M/y*T@r~a\\c?k:";
@@ -90,7 +90,7 @@ public class ExportTrackTest {
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testBuildGPXFilenameWhenUsesTrackNameButThereIsNoName() {
         // Method parameters
         String trackNameInDatabase = "";
@@ -102,7 +102,7 @@ public class ExportTrackTest {
         doTestBuildGPXFilename(trackNameInDatabase, preferenceSetting, trackStartDate.getTime(), expectedFilename);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testBuildGPXFilenameWhenUsesTrackNameAndStartDateButThereIsNoName() {
         // Method parameters
         String trackNameInDatabase = "";

@@ -1,6 +1,5 @@
 package net.osmtracker.layouts;
 
-import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewAssertion;
 import androidx.test.rule.ActivityTestRule;
 
@@ -10,7 +9,8 @@ import net.osmtracker.activity.AvailableLayouts;
 
 import org.hamcrest.Matcher;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -33,7 +33,7 @@ public class RepositorySettingsDialogTest {
     public ActivityTestRule<AvailableLayouts> mRule = new ActivityTestRule<>(AvailableLayouts.class);
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testToggleBehaviour(){
         onView(withId(R.id.github_config)).perform(click());
 

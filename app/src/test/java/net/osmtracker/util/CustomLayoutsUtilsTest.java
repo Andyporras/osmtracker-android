@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 
 import net.osmtracker.OSMTracker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -68,21 +68,21 @@ public class CustomLayoutsUtilsTest {
         assertEquals(result, expected);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void unconvertFileName() {
         String result = CustomLayoutsUtils.unconvertFileName("public transport");
         String expected = "public_transport.xml";
         assertEquals(result, expected);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void createFileName() {
         String result = CustomLayoutsUtils.createFileName("public transport", "es");
         String expected = "public_transport_es.xml";
         assertEquals(result, expected);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getStringFromStream() throws IOException {
         setupMocks();
         InputStream is = mockAssetManager.open("result.gpx");
@@ -98,7 +98,7 @@ public class CustomLayoutsUtilsTest {
         assertEquals(expected, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getCurrentLayoutName() {
         setupMocks();
         String result = CustomLayoutsUtils.getCurrentLayoutName(mockContext);

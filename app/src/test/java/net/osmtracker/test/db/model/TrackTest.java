@@ -7,14 +7,14 @@ import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
 import static net.osmtracker.db.TrackContentProvider.Schema.*;
 
-import org.junit.Test;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.*;
+
+import org.junit.jupiter.api.Test;
 
 //@RunWith(PowerMockRunner.class)
 public class TrackTest {

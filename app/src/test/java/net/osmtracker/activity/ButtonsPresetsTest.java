@@ -13,7 +13,7 @@ import android.widget.TextView;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -50,7 +50,7 @@ public class ButtonsPresetsTest {
     Field prefsField;
     Hashtable<String, String> mockHash;
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsoTest(){
         ButtonsPresets activity = new ButtonsPresets();
 
@@ -96,7 +96,7 @@ public class ButtonsPresetsTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     @PrepareForTest({ButtonsPresets.class, Environment.class})
     public void refreshActivityTest() {
         try {
@@ -133,7 +133,7 @@ public class ButtonsPresetsTest {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     @PrepareForTest(PreferenceManager.class)
     public void initializeAttributesTest() {
         ButtonsPresets mockActivity = mock(ButtonsPresets.class);
@@ -157,7 +157,7 @@ public class ButtonsPresetsTest {
         checkAttributesAfterInitialization(mockActivity);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     @PrepareForTest({File.class, Preferences.class, Environment.class})
     public void listLayoutsTest(){
         for (int i = 0; i <= 1 ; i++) {

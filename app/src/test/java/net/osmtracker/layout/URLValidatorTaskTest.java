@@ -2,7 +2,7 @@ package net.osmtracker.layout;
 
 import net.osmtracker.OSMTracker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
