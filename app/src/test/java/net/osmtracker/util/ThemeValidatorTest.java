@@ -8,7 +8,7 @@ import android.content.SharedPreferences.Editor;
 import net.osmtracker.OSMTracker;
 import net.osmtracker.R;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -76,7 +76,7 @@ public class ThemeValidatorTest {
 
     /*Use a theme that is not included on the theme values array and also
      *  verify methods of the mocked editor so that the preferences are saved.*/
-    @org.junit.jupiter.api.Test
+    @Test
     public void validateWrongTheme(){
 
         setupMocks("net.osmtracker:style/YellowTheme");
