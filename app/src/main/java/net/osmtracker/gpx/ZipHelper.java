@@ -63,7 +63,27 @@ public class ZipHelper {
             return null;
         }
     }
-
+    /***
+     * Compresses file gpx into a zip file.
+     * @param context   Application context.
+     * @param trackId   Track ID.
+     * @param fileGPX   GPX file.
+     * @return The created ZIP file or null if an error occurred.
+     */
+    public static File zipFile(Context context, long trackId, File fileGPX) {
+        String name = fileGPX.getName();
+        File zipFile = new File(context.getCacheDir(), name.substring(0, name.length() - 3)+"zip");
+        try (FileOutputStream fos = new FileOutputStream(zipFile);
+             ZipOutputStream zos = new ZipOutputStream(fos)) {
+            // Add the gpx file
+            addFileToZip(fileGPX, zos);
+            return zipFile;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Adds a file to the ZIP archive.

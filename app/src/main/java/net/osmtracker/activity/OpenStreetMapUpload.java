@@ -26,8 +26,11 @@ import net.osmtracker.R;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
 import net.osmtracker.gpx.ExportToTempFileTask;
+import net.osmtracker.gpx.ZipHelper;
 import net.osmtracker.osm.OpenStreetMapConstants;
 import net.osmtracker.osm.UploadToOpenStreetMapTask;
+
+import java.io.File;
 
 /**
  * <p>Uploads a track on OSM using the API and
@@ -205,8 +208,10 @@ public class OpenStreetMapUpload extends TrackDetailEditor {
 		new ExportToTempFileTask(this, trackId) {
 			@Override
 			protected void executionCompleted() {
+				File filezip = ZipHelper.zipFile(context,trackId,getTmpFile());
+				String nameFile = this.getFilename().substring(0, this.getFilename().length() - 3)+"zip";
 				new UploadToOpenStreetMapTask(OpenStreetMapUpload.this, accessToken,
-						trackId, this.getTmpFile(),	this.getFilename(),
+						trackId, filezip,	nameFile,
 						etDescription.getText().toString(), etTags.getText().toString(),
 						Track.OSMVisibility.fromPosition(
 								OpenStreetMapUpload.this.spVisibility.getSelectedItemPosition())
