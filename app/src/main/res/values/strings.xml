@@ -40,8 +40,8 @@
     <string name="trackmgr_contextmenu_stop">Stop tracking</string>
     <string name="trackmgr_contextmenu_resume">Resume tracking</string>
     <string name="trackmgr_contextmenu_delete">Delete</string>
-    <string name="trackmgr_contextmenu_export">Export as GPX</string>
-    <string name="trackmgr_contextmenu_share">Share GPX</string>
+    <string name="trackmgr_contextmenu_export">Export</string>
+    <string name="trackmgr_contextmenu_share">Share</string>
     <string name="trackmgr_contextmenu_osm_upload">Upload to OpenStreetMap</string>
     <string name="trackmgr_contextmenu_display">Display</string>
     <string name="trackmgr_contextmenu_details">Details</string>
@@ -66,6 +66,7 @@
     <string name="trackdetail_export_notyet">(Not exported yet)</string>
     <string name="trackdetail_osm_upload_notyet">(Not uploaded yet)</string>
     <string name="trackdetail_export_display">Display</string>
+    <string name="trackdetail_name">Name</string>
     <string name="trackdetail_description">Description</string>
     <string name="trackdetail_tags">Tags (comma separated)</string>
     <string name="trackdetail_description_mandatory">You must enter a description</string>
@@ -114,6 +115,15 @@
     <string name="error_externalstorage_not_writable_hint">Please check if ext. storage is correctly inserted and mounted.</string>
     <string name="error_voicerec_failed">Voice recording has failed</string>
     <string name="error_userlayout_parsing">Error while parsing XML layout file. Please revert to default layout.</string>
+
+    <!-- messages -->
+    <string name="permission_required">Permission required</string>
+    <string name="storage_permission_for_export_GPX">To export the GPX trace we need to write on the storage.</string>
+    <string name="storage_permission_for_display_track">To display the track properly we need access to the storage.</string>
+    <string name="storage_permission_for_share_track">To share the track properly we need access to the storage.</string>
+    <string name="storage_permission_for_upload_to_OSM">To upload the track to OSM we need access to the storage.</string>
+    <string name="acccept">Accept</string>
+    <string name="gps_perms_required">Can\'t continue without GPS permission</string>
 
     <!-- GPX -->
     <string name="gpx_track_name">Tracked with OSMTracker for Android™</string>
