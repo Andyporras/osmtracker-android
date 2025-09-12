@@ -18,9 +18,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch }}
+          # Use the branch from the manual input, or 'develop' for scheduled runs
+          ref: ${{ github.event.inputs.branch || 'develop' }}
+          # Important! Fetch all history so we can check for recent commits
+          fetch-depth: 0
 
+      - name: Check for new commits
+        id: check_commits # Give this step an ID to reference it later
+        # This step only runs for scheduled builds. Manual builds should always run.
+        if: github.event_name == 'schedule'
+        run: |
+          # If 'git log' finds commits, the output will not be empty
+          if [ -n "$(git log --since='24 hours ago' --oneline)" ]; then
+            echo "✅ Found recent commits. Proceeding with build."
+            # Create an output variable 'has_changes' with a value of 'true'
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "⏩ No new commits in the last 24 hours. Skipping build."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      # All subsequent steps depend on the output variable from the previous step
       - name: Setup Java JDK
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -28,29 +48,35 @@ jobs:
           cache: 'gradle'
 
       - name: Grant execute permission for gradlew
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         run: chmod +x gradlew
 
       - name: Build with Gradle
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Rename output APK
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         run: |
           DATE=$(date +'%Y%m%d-%H%M')
           mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/OSMTracker-nightly-$DATE.apk
           echo "ARTIFACT_DATE=$DATE" >> $GITHUB_ENV
 
       - name: Upload a Build Artifact
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: nightly-${{ env.ARTIFACT_DATE }}
           path: app/build/outputs/apk/debug/OSMTracker-nightly-*.apk
 
       - name: Delete existing Nightly release
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         run: gh release delete nightly --cleanup-tag --yes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Nightly Release
+        if: github.event_name == 'workflow_dispatch' || steps.check_commits.outputs.has_changes == 'true'
         uses: softprops/action-gh-release@v2.2.2
         with:
           tag_name: 'nightly'
